@@ -2,24 +2,36 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-import { Triangle } from './triangle';
+import { Tamagotchi } from './tamagotchi.js';
 
-
+var myTamagotchi;
 
 
 $(document).ready(function() {
 
-  $('.triangle-form').submit(function(event){
+  $('.tamagotchi').submit(function(event){
     event.preventDefault();
-
-    var side1t = $('#side1').val();
-    var side2t = $('#side2').val();
-    var side3t = $('#side3').val();
-
-    var endResult = new Triangle(side1t, side2t, side3t);
-
-    $("#result").text(endResult);
-    $(".result").show();
+    var name = $('input#name').val();
+     myTamagotchi = new Tamagotchi(name);
+     console.log(name);
+});
+ 
+  $("#feed").click(function(){
+     event.preventDefault();
+     let feed = myTamagotchi.feed();
+     console.log(feed);
+     $("#output").text(feed).show();
   });
 
+  $("#play").click(function(){
+    event.preventDefault();
+    let play = myTamagotchi.toString();
+    console.log(play);
+    $("#output").text(play).show();
+});
+
+  // $("#teach").click(function(){
+  //   event.preventDefault();
+  //   myTamagotchi.teach();
+  // });
 });
